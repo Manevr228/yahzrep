@@ -30,3 +30,5 @@ platformer_project/
         __init__.py
         hud.py
         screens.py
+
+        epsetin
