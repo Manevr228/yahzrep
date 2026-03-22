@@ -124,7 +124,7 @@ class Player:
 
         def reset(self):
 
-            self.Player = Player()
+            self.player = Player()
             self.platform = [
 
                 Platform(0, h - 40,LEVEL_WIDTH, 40),
@@ -162,6 +162,8 @@ class Player:
             self.score = 0
             self.game_over = False
 
+            self.finish = pygame.Rect(2050, h - 100, 40 , 60)
+
             self.camera_x = 0
 
         def collect_coin(self):
@@ -177,9 +179,13 @@ class Player:
                 self.player.hit()
                 self.player.lives -= 1
 
+        def check_finish(self):
+            if self.player.rect.colliderect(self.finish):
+                print("ю вин")
 
         def update_camera(self):
-            self.camera_x = 0
+            self.camera_x = max(0,min(self.player.rect.centerx - w // 2,LEVEL_WIDTH - w))
+
 
         def run(self):
             running = True
